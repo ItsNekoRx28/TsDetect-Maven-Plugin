@@ -81,11 +81,12 @@ public class TSDetectMavenPluginMojo extends AbstractMojo {
                     writer.write(line + "\n");
                 }
                 
-                System.out.println("CSV generado con éxito en: " + inputCsv.toAbsolutePath());
+                getLog().info("CSV de ficheros a testear generado con éxito en: " + inputCsv.toAbsolutePath());
             }
 
             new ProcessBuilder("java", "-jar", tsdetectPath, inputCsv.toAbsolutePath().toString()).start();
 
+            getLog().info("CSV de tests smells generado con éxito en la raíz del proyecto");
         } catch (IOException e) {
             throw new MojoExecutionException("Error creating file " + inputCsv, e);
         }
